@@ -1,4 +1,4 @@
-package Champion;
+package io.zipcoder;
 import robocode.*;
 import java.awt.Color;
 
@@ -52,7 +52,6 @@ public class Champion extends TeamRobot
 	 * onHitByBullet: What to do when you're hit by a bullet
 	 */
 	public void onHitByBullet(HitByBulletEvent e) {
-
 		evasiveManeuvers();
 	}
 	
@@ -66,7 +65,6 @@ public class Champion extends TeamRobot
 	}	
 	public void onHitRobot(HitRobotEvent e){
 		setTurnRight(e.getBearing());
-
 		back(100);
 	}
 	public void standardMovement(){

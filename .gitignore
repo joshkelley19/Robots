@@ -1,4 +1,16 @@
+<<<<<<< HEAD
 sample/*
 sampleex/*
 sampleteam/*
 samplesentry/*
+=======
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+>>>>>>> 01ae454ff4fb9891d8b372a260fb954042cda9aa

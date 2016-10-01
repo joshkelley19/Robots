@@ -1,4 +1,4 @@
-package Champion;
+package FOF;
 import robocode.*;
 import java.awt.Color;
 
@@ -7,7 +7,7 @@ import java.awt.Color;
 /**
  * Champion - a robot by (your name here)
  */
-public class Champion extends TeamRobot
+public class Emerald extends TeamRobot
 {
 	public byte scanDirection= 1;
 	/**
@@ -18,8 +18,7 @@ public class Champion extends TeamRobot
 		setAdjustRadarForGunTurn(true);
 		setAdjustGunForRobotTurn(true);
 		setAdjustRadarForRobotTurn(true);
-	
-		setColors(Color.red,Color.blue,Color.green); // body,gun,radar
+		setColors(Color.green,Color.green,Color.green); // body,gun,radar
 
 		// Robot main loop
 		while(true) {
@@ -28,7 +27,8 @@ public class Champion extends TeamRobot
 			if(getEnergy()<50){
 				evasiveManeuvers();
 			}else standardMovement();
-			//turnRadarRight(360);
+			turnRadarRight(360);
+			
 		}
 	}
 
@@ -36,15 +36,21 @@ public class Champion extends TeamRobot
 	 * onScannedRobot: What to do when you see another robot
 	 */
 	public void onScannedRobot(ScannedRobotEvent e) {
-		
+		if(e.getName().contains("FOF")){
+			return;
+		}		
+		turnGunRight(getHeading() - getGunHeading() + 				e.getBearing());//mark.random-article.com
 		scanDirection *= -1; // changes value from 1 to -1
 		setTurnRadarRight(360 * scanDirection);//full rotation scans left to right//mark.random-article.com
+		setTurnRadarRight(e.getBearing());
 		execute();
-		//setTurnRadarRight(e.getBearing());
-		setTurnRight(e.getBearing());
-		setTurnGunRight(getHeading() - getGunHeading() + e.getBearing());//mark.random-article.com
-		setFire(Math.min(500/e.getDistance(),3));
-		execute();
+		//turnGunRight(e.getBearing());
+		fire(1);
+
+		ahead(100);
+		//setFire(Math.min(500/e.getDistance(),3));
+		fire(3);
+		
 		
 	}
 
@@ -52,7 +58,7 @@ public class Champion extends TeamRobot
 	 * onHitByBullet: What to do when you're hit by a bullet
 	 */
 	public void onHitByBullet(HitByBulletEvent e) {
-
+		evasiveManeuvers();
 		evasiveManeuvers();
 	}
 	
@@ -65,14 +71,13 @@ public class Champion extends TeamRobot
 	
 	}	
 	public void onHitRobot(HitRobotEvent e){
-		setTurnRight(e.getBearing());
+		turnRight(e.getBearing());
 
-		back(100);
+		ahead(100);
 	}
 	public void standardMovement(){
-		setTurnRadarRight(360);
 		ahead(Math.random()*400);
-		//setTurnRadarRight(360);
+		setTurnRadarRight(360);
 		back(Math.random()*400);
 	}
 	public void evasiveManeuvers(){

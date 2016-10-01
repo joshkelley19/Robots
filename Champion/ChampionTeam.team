@@ -1,0 +1,6 @@
+#Robocode robot team
+#Thu Sep 22 10:54:08 EDT 2016
+team.members=Champion.Champion 1.0*,sample.Corners,sample.Crazy,sample.Fire,sample.Interactive
+team.author.name=Josh
+robocode.version=1.9.2.5
+team.description=Test team for Champion
